@@ -1,0 +1,329 @@
+/* style.css */
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #121212; /* Dark mod arka plan */
+  color: #ffffff; /* Yazı renkleri */
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00ccff;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.wheel-container {
+  position: relative;
+  width: 100%;
+}
+
+.indicator {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 30px solid #00ccff; /* Gösterge rengi */
+  transform: translateX(-50%) rotate(180deg); /* Yönü düzeltmek için rotate */
+  z-index: 10;
+}
+
+#wheel {
+  width: 350px; /* Çark boyutunu artırdık */
+  height: 350px;
+  border-radius: 50%;
+  border: 5px solid #444; /* Çerçeve rengi */
+  margin: 20px auto;
+  background: conic-gradient(
+    #ffa500 0deg 60deg,
+    #ff6347 60deg 120deg,
+    #e74c3c 120deg 180deg,
+    #2ecc71 180deg 240deg,
+    #3498db 240deg 300deg,
+    #9b59b6 300deg 360deg
+  );
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Şık gölge efekti */
+}
+
+.segment {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  transform-origin: 50% 100%;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Yazı gölgesi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(calc(var(--rotate) + 30deg)); /* Her segment için döndürme */
+  writing-mode: vertical-rl; /* Yazıyı dikey hale getirir */
+}
+
+#spinButton {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #00ccff; /* Düğme rengi */
+  color: #121212;
+  border: none;
+  border-radius: 30px; /* Yuvarlak kenar */
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 204, 255, 0.5); /* Şık düğme efekti */
+}
+
+#spinButton:hover {
+  background: #008fb3; /* Hover efekti */
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #ffcc00; /* Sonuç yazısı rengi */
+  font-weight: bold;
+}
+
+/* Responsive tasarım */
+@media (max-width: 600px) {
+  #wheel {
+    width: 280px; /* Mobilde daha küçük */
+    height: 280px;
+  }
+
+  .indicator {
+    top: -15px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid #00ccff;
+    transform: translateX(-50%) rotate(30deg); /* Yönü düzeltmek için rotate */
+  }
+
+  #spinButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Liderlik Tablosu */
+#leaderboard {
+  display: none;
+  margin-top: 30px;
+  background: #1e1e1e; /* Koyu arka plan */
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+#leaderboard.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Başlık */
+#leaderboard h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ccff;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #00ccff, #00ff99);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Liste Stili */
+#leaderboard ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#leaderboard li {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, #ff6347, #ff5f6d);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#leaderboard li:nth-child(even) {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+/* Hover Efekti */
+#leaderboard li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Skor */
+#leaderboard li span {
+  color: #ffd700; /* Altın sarısı renk */
+  font-size: 1.2rem;
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 600px) {
+  #leaderboard {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  #leaderboard h2 {
+    font-size: 1.8rem;
+  }
+
+  #leaderboard li {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* Kullanıcı Adı Girişi */
+#usernameForm {
+  background-color: #1e1e1e; /* Koyu arka plan */
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Başlık */
+#usernameForm label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00ccff; /* Canlı renk */
+  margin-bottom: 15px;
+  display: block;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Input Alanı */
+#usernameForm input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  background-color: #2a2a2a; /* Koyu gri arka plan */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#usernameForm input:focus {
+  background-color: #444; /* Fokuslandığında biraz daha koyu */
+}
+
+/* Başlat Butonu */
+#usernameForm button {
+  background-color: #00ccff; /* Buton rengi */
+  color: #121212;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 204, 255, 0.4);
+}
+
+#usernameForm button:hover {
+  background-color: #0099cc; /* Hover efekti */
+  transform: scale(1.05);
+}
+
+#usernameForm button:active {
+  transform: scale(1);
+}
+
+/* Animasyon */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 600px) {
+  #usernameForm {
+    padding: 20px;
+  }
+
+  #usernameForm label {
+    font-size: 1.2rem;
+  }
+
+  #usernameForm input {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  #usernameForm button {
+    font-size: 1rem;
+    padding: 12px 22px;
+  }
+}

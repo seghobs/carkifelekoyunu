@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çarkıfelek Oyunu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Çarkıfelek Oyunu</h1>
+    
+    <!-- Kullanıcı Adı Girişi -->
+    <div id="usernameForm">
+      <label for="username">Kullanıcı Adı:</label>
+      <input type="text" id="username" placeholder="Adınızı girin" />
+      <button id="startGame">Oyuna Başla</button>
+    </div>
+    
+    <!-- Oyun Arayüzü -->
+    <div id="gameArea" style="display: none;">
+      <p>Toplam Puan: <span id="score">0</span></p>
+      <div class="wheel-container">
+        <div class="indicator"></div>
+        <div id="wheel">
+          <div class="segment" style="--rotate: 0deg;">50</div>
+          <div class="segment" style="--rotate: 60deg;">100</div>
+          <div class="segment" style="--rotate: 120deg;">Kaybettiniz</div>
+          <div class="segment" style="--rotate: 180deg;">200</div>
+          <div class="segment" style="--rotate: 240deg;">Tekrar Çevir</div>
+          <div class="segment" style="--rotate: 300deg;">Büyük Ödül</div>
+        </div>
+        <button id="spinButton">Çarkı Döndür</button>
+      </div>
+      <div id="result">Sonuç: Henüz döndürülmedi.</div>
+    </div>
+
+    <!-- Liderlik Tablosu -->
+    <div id="leaderboard" style="display: none;">
+      <h2>Liderlik Tablosu</h2>
+      <ul id="leaderboardList"></ul>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
